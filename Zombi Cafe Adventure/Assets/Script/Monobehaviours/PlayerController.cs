@@ -3,51 +3,70 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private Rigidbody rb;
+    DefaultInputActions defaultInputActions;
+
+    Rigidbody rb;
 
     [SerializeField]
     private float moveSpeed;
 
-    [SerializeField]
-    private float throwForce;
-
     public bool stopPlayer = false;
+    [SerializeField] private bool IsWalking = false;
 
-    private Vector2 move;
-    private Vector3 moveForce;
+    private Vector2 move; // tuþlara basýnca kaydolan
+    private Vector3 moveForce; // anlýk
     private Vector3 throwDirection;
 
-    private void Start()
+
+    private void Awake()
     {
+        defaultInputActions = new DefaultInputActions();
         rb = GetComponent<Rigidbody>();
+
+        defaultInputActions.Player.Move.started += Move;
+        defaultInputActions.Player.Move.performed += Move;
+        defaultInputActions.Player.Move.canceled += Move;
     }
 
-    void OmMove(InputValue value)
+    private void Move(InputAction.CallbackContext context)
     {
-        move = value.Get<Vector2>();
-        moveForce =new Vector3(-move.x,0.0f,-move.y);
+        //Debug.Log(context.ReadValue<Vector2>());
+        move = context.ReadValue<Vector2>();
+
+        moveForce.x = move.x;
+        moveForce.z = move.y;
+
+        stopPlayer= move.x != 0 || move.y  != 0;
     }
-
-    void OnToggle()
-    {
-        // TODO: Add Food Projectile toggle code
-    }
-
-    void OnThrow()
-    {
-
-    }
-
     private void FixedUpdate()
     {
-        rb.velocity = moveForce * moveSpeed;
-        if (!stopPlayer) return;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        if (stopPlayer)
+        {
+            rb.MovePosition(transform.position + moveForce.normalized * moveSpeed * Time.deltaTime);
+        }
     }
 
+    private void OnEnable()
+    {
+        defaultInputActions.Player.Enable();
+    }
+
+    private void OnDisable()
+    {
+        defaultInputActions.Player.Disable();
+    }
+
+    public int GetPlayerStealthProfile()
+    {
+        if (IsWalking)
+        {
+            return 0;
+        }else
+        {
+            return 1;
+        }
+    }
 }

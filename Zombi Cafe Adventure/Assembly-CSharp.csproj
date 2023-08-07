@@ -53,11 +53,13 @@
     <UnityVersion>2020.3.24f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Monobehaviours\HP.cs" />
-    <Compile Include="Assets\Script\Monobehaviours\ProjectileAttack.cs" />
     <Compile Include="Assets\Script\Monobehaviours\NavmeshMovement.cs" />
-    <Compile Include="Assets\Script\Monobehaviours\MeleAttack.cs" />
+    <Compile Include="Assets\Script\Monobehaviours\HP.cs" />
     <Compile Include="Assets\Script\Monobehaviours\PlayerController.cs" />
+    <Compile Include="Assets\Script\Monobehaviours\MeleAttack.cs" />
+    <Compile Include="Assets\Script\Monobehaviours\ProjectileAttack.cs" />
+    <Compile Include="Assets\Script\Monobehaviours\SpawwnController.cs" />
+    <Compile Include="Assets\Script\Monobehaviours\Util\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

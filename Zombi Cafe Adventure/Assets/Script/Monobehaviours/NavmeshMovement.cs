@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-
 [RequireComponent(typeof(NavMeshAgent))]   
 public class NavmeshMovement : MonoBehaviour
 {
@@ -14,13 +13,13 @@ public class NavmeshMovement : MonoBehaviour
     private NavMeshAgent agent;
 
     [SerializeField]
-    private GameObject selectedTarget;
+    private GameObject selectedTarget; // transform
 
     public UnityEvent<bool> inAttackRange;
 
     private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();   
+        agent = GetComponent<NavMeshAgent>();
         agent.speed = agentSpeed;
     }
 
@@ -29,7 +28,7 @@ public class NavmeshMovement : MonoBehaviour
         selectedTarget = SelectTargetPlayer();
     }
 
-    private GameObject SelectTargetPlayer()
+    private GameObject SelectTargetPlayer()  // çok kiþili oyuna çevirmeyi düþünüyorum. 
     {
         GameObject[] target;
         target = GameObject.FindGameObjectsWithTag("Player");
@@ -39,19 +38,12 @@ public class NavmeshMovement : MonoBehaviour
     private void Update()
     {
         agent.SetDestination(selectedTarget.transform.position);
-        if (agent.destination != null) 
+        if (agent.destination != null)
         {
-            if(agent.remainingDistance <= 0.1f)
+            if (agent.remainingDistance <= 0.1f)
             {
                 inAttackRange.Invoke(true);
             }
         }
     }
-
-
-
-
-
-
-
 }
