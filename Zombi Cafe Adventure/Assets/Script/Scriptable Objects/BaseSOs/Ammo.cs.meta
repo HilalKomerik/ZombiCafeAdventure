@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: b89b8deae92c5fd449d6ff92780f1420
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - foodMesh: {fileID: 919132149155446097, guid: 09011b21968f817499509c0206413847, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

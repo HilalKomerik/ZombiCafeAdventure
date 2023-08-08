@@ -57,9 +57,12 @@
     <Compile Include="Assets\Script\Monobehaviours\HP.cs" />
     <Compile Include="Assets\Script\Monobehaviours\PlayerController.cs" />
     <Compile Include="Assets\Script\Monobehaviours\MeleAttack.cs" />
-    <Compile Include="Assets\Script\Monobehaviours\ProjectileAttack.cs" />
     <Compile Include="Assets\Script\Monobehaviours\SpawwnController.cs" />
     <Compile Include="Assets\Script\Monobehaviours\Util\GameManager.cs" />
+    <Compile Include="Assets\Script\Monobehaviours\ProjectileAttack.cs" />
+    <Compile Include="Assets\Script\Scriptable Objects\BaseSOs\Ammo.cs" />
+    <Compile Include="Assets\Script\Monobehaviours\AmmoInventory.cs" />
+    <Compile Include="Assets\Script\Scriptable Objects\BaseSOs\AmmoContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
